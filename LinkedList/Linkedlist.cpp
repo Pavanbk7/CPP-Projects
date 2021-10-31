@@ -1,26 +1,24 @@
-/***************************
+/**************************************
+ * This is a singly linked list program
  *
  *
- *
-****************************/
-
-
+***************************************/
 #include<iostream>
 
-/***************************
+/***************************************
  *@structure : Node
  *
-****************************/
+***************************************/
 struct Node
 {
     int data;
     Node* nextNode;
 };
 
-/***************************
+/***************************************
  *@class : Singly linked Class
  *
-****************************/
+****************************************/
 class Slist
 {
     public:
@@ -40,12 +38,12 @@ class Slist
         Node* tail;
 };
 
-/***************************
+/****************************************
  * @method : addToList
  * @description : This function will be
  * used to add new element to the list
  *
-****************************/
+*****************************************/
 void Slist::addToList(int data)
 {
     Node* temp = new Node;
@@ -65,40 +63,49 @@ void Slist::addToList(int data)
     }
 }
 
-/***************************
+/****************************************
  * @method : displayListData
  * @description : This function will
  * display element of the list.
  *
-****************************/
+****************************************/
 void Slist::displayListData()
 {
     Node* temp = new Node;
     unsigned int index = 1U;
     std::cout<<"          Disply List elements"<<std::endl;
-    std::cout<<"          "<<tail->data<<"    ";
-    temp = tail->nextNode;
-    while(temp != NULL)
+
+    if(tail != NULL)
     {
-        std::cout<<temp->data<<"    ";
-        temp = temp->nextNode;
-        index++;
-        if(index == 10u)
+        std::cout<<"          "<<tail->data<<"    ";
+        temp = tail->nextNode;
+        while(temp != NULL)
         {
-            std::cout<<"\n          ";
-            index = 0U;
+            std::cout<<temp->data<<"    ";
+            temp = temp->nextNode;
+            index++;
+            if(index == 10u)
+            {
+                std::cout<<"\n          ";
+                index = 0U;
+            }
         }
     }
+    else
+    {
+        std::cout<<"          There are no List elements"<<std::endl;
+    }
+
     std::cout<<std::endl;
 }
 
-/***************************
+/***************************************
  * @method : removeFrmList
  * @description : This function will
  * remove all the elements which are
  * matched with the passed data value
  *
-****************************/
+***************************************/
 void Slist::removeFrmList(int data)
 {
     if(tail != NULL)
@@ -125,7 +132,6 @@ void Slist::removeFrmList(int data)
                     {
                         tail = tempCurr->nextNode;
                         tempCurr = tail;
-                        tempNext = tail->nextNode;
                     }
                     else
                     {
@@ -140,6 +146,7 @@ void Slist::removeFrmList(int data)
                     {
                         tail = NULL;
                         head = NULL;
+                        tempCurr = NULL;
                     }
                     else
                     {
@@ -161,30 +168,54 @@ void Slist::removeFrmList(int data)
     }
 }
 
+/***************************************
+ * @method : removeFrmList
+ * @description : This function will
+ * remove all the elements which are
+ * matched with the passed data value
+ *
+***************************************/
+unsigned int Slist::countListData()
+{
+    unsigned int listNum = 0u;
+    Node* temp = new Node;
+    temp = tail;
+    while(temp != NULL)
+    {
+        listNum++;
+        temp = temp->nextNode;
+    }
+    return listNum;
+}
+
+
+/***************************************
+ * @main
+ *
+***************************************/
 int main()
 {
     std::cout<<"----------Singly Linked List program----------\n"<<std::endl;
     Slist* Ls1 = new Slist;
     unsigned int i;
+
     //Add data to List
     for(i = 1u; i <= 100u; i++)
     {
-        Ls1->addToList(i);
+        Ls1->addToList(100U);
     }
     std::cout<<"          after AddtoList\n";
 
     Ls1->displayListData();
+    std::cout<<"          Number of List elements "<<Ls1->countListData()<<std::endl;
 
     //Remove data to list
     std::cout<<"          after removingFrmList\n";
 
-    for(i = 1u; i <= 100u; i++)
-    {
-        if(i % 2 == 0u)
-            Ls1->removeFrmList(i);
-    }
+    Ls1->removeFrmList(100);
 
     Ls1->displayListData();
+    std::cout<<"          Number of List elements "<<Ls1->countListData()<<std::endl;
 
     std::cout<<"----------Singly Linked List program----------\n"<<std::endl;
 }
