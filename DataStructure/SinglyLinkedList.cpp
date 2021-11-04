@@ -8,39 +8,7 @@
  * Header files
  *************************************/
 #include<iostream>
-
-/***************************************
- *@structure : Node
- *
-***************************************/
-struct Node
-{
-    int data;
-    Node* nextNode;
-};
-
-/***************************************
- *@class : Singly linked Class
- *
-****************************************/
-class Slist
-{
-    public:
-        Slist()
-        {
-            head = NULL;
-            tail = NULL;
-        }
-        void addToList(int data);
-        void removeFrmList(int data);
-        unsigned int countListData();
-        void displayListData();
-        void sortList(char sorttype);
-
-    private:
-        Node* head;
-        Node* tail;
-};
+#include"SinglyLinkedList.hpp"
 
 /****************************************
  * @method : addToList
@@ -197,7 +165,7 @@ unsigned int Slist::countListData()
  * @main
  *
 ***************************************/
-int main()
+void SinglyLinkedListMain()
 {
     std::cout<<"----------Singly Linked List program----------\n"<<std::endl;
     Slist* Ls1 = new Slist;
