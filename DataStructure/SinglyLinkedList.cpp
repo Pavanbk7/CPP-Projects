@@ -134,14 +134,14 @@ void Slist::removeFrmList(int data)
                 }
             }
         }
+        free(tempCurr);
+        free(tempNext);
+        free(tempPrev);
     }
     else
     {
 
     }
-    free(tempCurr);
-    free(tempNext);
-    free(tempPrev);
 }
 
 /***************************************
