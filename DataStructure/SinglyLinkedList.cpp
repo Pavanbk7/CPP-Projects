@@ -33,6 +33,7 @@ void Slist::addToList(int data)
         temp->nextNode = NULL;
         head = temp;
     }
+    free(temp);
 }
 
 /****************************************
@@ -67,7 +68,7 @@ void Slist::displayListData()
     {
         std::cout<<"          There are no List elements"<<std::endl;
     }
-
+    free(temp);
     std::cout<<std::endl;
 }
 
@@ -138,6 +139,9 @@ void Slist::removeFrmList(int data)
     {
 
     }
+    free(tempCurr);
+    free(tempNext);
+    free(tempPrev);
 }
 
 /***************************************
@@ -157,6 +161,7 @@ unsigned int Slist::countListData()
         listNum++;
         temp = temp->nextNode;
     }
+    free(temp);
     return listNum;
 }
 
